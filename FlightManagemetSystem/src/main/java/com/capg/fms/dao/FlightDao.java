@@ -6,10 +6,13 @@ import com.capg.fms.model.Flight;
 
 public interface FlightDao {
 
-	public Flight addFlight(Flight flight);
-	public Flight updateFlight(Flight flight);
+	public void addFlight(Flight flight);
+	public void updateFlight(Flight flight);
 	public Flight retrieveFlight(long flightNumber);
 	public List<Flight> retrieveAllFlights();
-	public void deleteFlight(long fno);
+	public boolean deleteFlight(long flightNumber);
 	
 }
+
+
+
