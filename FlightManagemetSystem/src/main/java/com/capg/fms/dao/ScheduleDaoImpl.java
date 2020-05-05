@@ -15,22 +15,19 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	/* This module will add the schedule in the Schedule table.
-	 * Parameters: schedule id, source, destination, arrival_date_time, departure_date_time*/
+	// This module will add the schedule in the Schedule table.
 	@Override
 	public void addSchedule(Schedule schedule) {
 		entityManager.persist(schedule);
 	}
 	
-	/* This module will retrieve the schedule in the Schedule table.
-	 * Parameters: schedule id, source, destination, arrival_date_time, departure_date_time*/
+	// This module will retrieve the schedule in the Schedule table.
 	@Override
 	public Schedule retrieveSchedule(int scheduleid) {
 		return entityManager.find(Schedule.class, scheduleid);
 	}
 	
-	/* This module will retrieve all schedules in the Schedule table.
-	 * Parameters: schedule id, source, destination, arrival_date_time, departure_date_time*/
+	// This module will retrieve all schedules in the Schedule table.
 	@Override
 	public List<Schedule> retrieveAllSchedule() {
 			String query = "select schedule from Schedule schedule";
@@ -38,8 +35,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 			return q.getResultList();
 		}
 
-	/* This module will update the schedule in the Schedule table.
-	 * Parameters: schedule id, source, destination, arrival_date_time, departure_date_time*/
+	// This module will update the schedule in the Schedule table.
 	@Override
 	public void updateSchedule(Schedule schedule) {
 		entityManager.getTransaction().begin();
@@ -47,8 +43,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		entityManager.getTransaction().commit();
 	}
 
-	/* This module will delete the schedule in the Schedule table.
-	 * Parameters: schedule id, source, destination, arrival_date_time, departure_date_time*/
+	// This module will delete the schedule in the Schedule table.
 	@Override
 	public boolean deleteSchedule(int scheduleid) {
 		Schedule schedule = entityManager.find(Schedule.class, scheduleid);
