@@ -16,22 +16,19 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 	@PersistenceContext
 	EntityManager entityManager;
 	
-	/* This module will add the flights scheduled in the ScheduledFlights.
-	 * Parameters:serial no, schedule id, flight id. */
+	// This module will add the flights scheduled in the ScheduledFlights.
 	@Override
 	public void addScheduledFlights(ScheduledFlights sflight) {
 		entityManager.persist(sflight);
 	}
 
-	/* This module will retrieve the flight scheduled in the ScheduledFlights.
-	 * Parameters:serial no, schedule id, flight id. */
+	// This module will retrieve the flight scheduled in the ScheduledFlights.
 	@Override
 	public ScheduledFlights retrieveScheduledFlight(int serialno) {
 		return entityManager.find(ScheduledFlights.class, serialno);
 	}
 
-	/* This module will retrieve all flights scheduled in the ScheduledFlights.
-	 * Parameters:serial no, schedule id, flight id. */
+	// This module will retrieve all flights scheduled in the ScheduledFlights.
 	@Override
 	public List<ScheduledFlights> retrieveAllScheduledFlights() {
 		String query = "select sflight from ScheduledFlights sflight";
@@ -39,8 +36,7 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 		return q.getResultList();
 	}
 	
-	/* This module will update the flights scheduled in the ScheduledFlights.
-	 * Parameters:serial no, schedule id, flight id. */
+	// This module will update the flights scheduled in the ScheduledFlights.
 	@Override
 	public void updateScheduledFlights(ScheduledFlights sflight) {
 		entityManager.getTransaction().begin();
@@ -48,8 +44,7 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 		entityManager.getTransaction().commit();
 	}
 	
-	/* This module will delete the flights scheduled in the ScheduledFlights.
-	 * Parameters:serial no, schedule id, flight id. */
+	// This module will delete the flights scheduled in the ScheduledFlights.
 	@Override
 	public boolean deleteScheduledFlights(int serialno) {
 		ScheduledFlights sflight =entityManager.find(ScheduledFlights.class, serialno);
