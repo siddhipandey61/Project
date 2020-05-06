@@ -9,7 +9,7 @@ public interface ScheduledFlightsDao {
 	public List<Schedule> retrieveScheduledFlights(String source, String destination);
 	public List<ScheduledFlights> retrieveAllScheduledFlights(int flightId);
 	public boolean updateScheduledFlights(ScheduledFlights sflight);
-	public boolean deleteScheduledFlights(Schedule scheduleId);
+	public boolean deleteScheduledFlights(int scheduleId);
 	
 	
 }
