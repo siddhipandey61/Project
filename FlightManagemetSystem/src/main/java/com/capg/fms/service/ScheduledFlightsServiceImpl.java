@@ -19,28 +19,43 @@ public class ScheduledFlightsServiceImpl implements ScheduledFlightsService{
 	private ScheduledFlightsDao scheduledFlightsDao;
 
 	@Override
-	public boolean newScheduledFlights(ScheduledFlights sflight) {
-		return scheduledFlightsDao.addScheduledFlights(sflight);
+	public boolean newScheduledFlights(ScheduledFlights sflight) throws ScheduleIdNotFoundException {
+		List<ScheduledFlights> list = getAllScheduledFlights();
+		Optional<ScheduledFlights> optional = list.stream().filter(f1->f1.getScheduleId()==sflight.getScheduleId()).findFirst();
+		if(optional.isPresent()) {
+			return scheduledFlightsDao.addScheduledFlights(sflight);
+		}
+		else
+			throw new ScheduleIdNotFoundException("This id is already taken");
 	}
 
 	@Override
 	public List<Schedule> getScheduledFlight(String source, String destination) {
 		return scheduledFlightsDao.retrieveScheduledFlights(source, destination);
 	}
-
+	
 	@Override
-	public List<ScheduledFlights> getAllScheduledFlights(int scheduleId) {
-		return scheduledFlightsDao.retrieveAllScheduledFlights(scheduleId);
+	public List<ScheduledFlights> getAllScheduledFlights() {
+		return scheduledFlightsDao.retrieveAllShceduledFlights();
 	}
-
+	
+	@Override
+	public List<ScheduledFlights> getScheduledFlight(int scheduleId) throws ScheduleIdNotFoundException {
+		List<ScheduledFlights> list = getAllScheduledFlights();
+		Optional<ScheduledFlights> optional = list.stream().filter(f1->f1.getScheduleId().getScheduleId()==scheduleId).findFirst();
+		if(optional.isPresent()) {
+			return scheduledFlightsDao.retrieveAllScheduledFlights(scheduleId);
+		}
+		else
+			throw new ScheduleIdNotFoundException("Id doesn't exist");
+	}
 	@Override
 	public boolean modifyScheduledFlights(ScheduledFlights sflight) {
 		return scheduledFlightsDao.updateScheduledFlights(sflight);
 	}
 
 	@Override
-	public boolean deleteScheduledFlights(Schedule scheduleId) {
+	public boolean deleteScheduledFlights(int scheduleId) {
 		return scheduledFlightsDao.deleteScheduledFlights(scheduleId);
 	}
-
 }
