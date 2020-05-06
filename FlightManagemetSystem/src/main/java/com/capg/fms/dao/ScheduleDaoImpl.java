@@ -30,8 +30,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	
 	// This module will retrieve all schedules in the Schedule table.
 	@Override
-	public List<Schedule> retrieveAllSchedule() {
-			String query = "select schedule from Schedule schedule";
+	public List<Schedule> retrieveAllSchedule(int scheduleId) {
+			String query = "select schedule from Schedule schedule where Schedule Id="+scheduleId;
 			TypedQuery<Schedule> q = entityManager.createQuery(query, Schedule.class);
 			return q.getResultList();
 		}
