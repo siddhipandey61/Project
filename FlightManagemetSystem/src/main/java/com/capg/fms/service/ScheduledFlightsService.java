@@ -6,9 +6,10 @@ import com.capg.fms.model.Schedule;
 import com.capg.fms.model.ScheduledFlights;
 
 public interface ScheduledFlightsService {
-	public boolean newScheduledFlights(ScheduledFlights sflight);
+	public boolean newScheduledFlights(ScheduledFlights sflight) throws ScheduleIdNotFoundException;
 	public List<Schedule> getScheduledFlight(String source, String destination);
-	public List<ScheduledFlights> getAllScheduledFlights(int scheduleId);
+	public List<ScheduledFlights> getScheduledFlight(int scheduleId) throws ScheduleIdNotFoundException;
+	public List<ScheduledFlights> getAllScheduledFlights();
 	public boolean modifyScheduledFlights(ScheduledFlights sflight);
-	public boolean deleteScheduledFlights(Schedule scheduleId);
+	public boolean deleteScheduledFlights(int scheduleId);
 }
