@@ -17,8 +17,9 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	// This module will add the schedule in the Schedule table.
 	@Override
-	public void addSchedule(Schedule schedule) {
+	public boolean addSchedule(Schedule schedule) {
 		entityManager.persist(schedule);
+		return true;
 	}
 	
 	// This module will retrieve the schedule in the Schedule table.
@@ -37,10 +38,11 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	// This module will update the schedule in the Schedule table.
 	@Override
-	public void updateSchedule(Schedule schedule) {
+	public boolean updateSchedule(Schedule schedule) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(schedule);
 		entityManager.getTransaction().commit();
+		return true;
 	}
 
 	// This module will delete the schedule in the Schedule table.
