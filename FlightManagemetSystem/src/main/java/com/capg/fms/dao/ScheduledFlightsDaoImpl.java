@@ -48,7 +48,7 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 	
 	// This module will delete the flights scheduled in the ScheduledFlights.
 	@Override
-	public boolean deleteScheduledFlights(Schedule scheduleId) {
+	public boolean deleteScheduledFlights(int scheduleId) {
 		ScheduledFlights sflight =entityManager.find(ScheduledFlights.class, scheduleId);
 		if(sflight !=null)
 		{
