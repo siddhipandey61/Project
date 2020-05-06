@@ -14,41 +14,22 @@ public class SeatDaoImpl implements SeatDao
 	EntityManager entityManager;
 	
 	@Override
-	public void addSeat(BookedSeats seat) {
+	public BookedSeats newSeat(BookedSeats seat) {
 		entityManager.persist(seat);
+		return seat;
 	}
 
 	@Override
-	public void updateSeat(BookedSeats seat) {
-	entityManager.getTransaction().begin();
-	entityManager.merge(seat);
-	entityManager.getTransaction().commit();
-	}
-
-	@Override
-	public BookedSeats retrieveSeat(int seatnumber) {
+	public BookedSeats getSeat(int seatnumber) {
 		return entityManager.find(BookedSeats.class, seatnumber);
 	}
 
 	@Override
-	public List<BookedSeats> retrieveAllSeat() {
+	public List<BookedSeats> getAllSeat() {
 		String query = "select seats";
 		TypedQuery<BookedSeats> bs = entityManager.createQuery(query, BookedSeats.class);
 		return bs.getResultList();
 		
 	}
-
-	@Override
-	public boolean deleteSeat(int seatnumber) {
-		BookedSeats bookedseats = entityManager.find(BookedSeats.class, seatnumber);
-		if(bookedseats != null)
-		{
-			entityManager.remove(bookedseats);
-			return true;
-		}
-		else {
-			
-		return false;	
-		}
-	}
 }
+
