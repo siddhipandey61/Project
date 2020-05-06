@@ -2,14 +2,20 @@ package com.capg.fms.model;
 
 import java.math.BigInteger;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class BookedSeats
 {
-	private String category;
-	private int noOfSeats;
+	@Id
 	private BigInteger serialNo;
 	private int bookingId;
+	private String category;
+	private int noOfSeats;
+	
+	public BookedSeats() {
+		super();
+	}
 	
 	public BookedSeats(String category,int noOfSeats,BigInteger serialNo,int bookingId)
 	{
