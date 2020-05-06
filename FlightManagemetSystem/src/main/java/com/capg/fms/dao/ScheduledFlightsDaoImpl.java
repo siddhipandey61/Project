@@ -27,7 +27,14 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Schedule> retrieveScheduledFlights(String source, String destination) {
-		Query query = entityManager.createQuery("select s from Schedule s where Source="+source+"AND Destination="+destination);
+		Query query = entityManager.createQuery("select s.scheduleId,s.source,s.destination,s.arrivaltime,s.departuretime,f.flightNumber,f.carrierName,f.seatCapacity from Schedule s INNER JOIN ScheduledFlights sf ON s.scheduleId=sf.scheduleId INNER JOIN Flight f on sf.flightId=f.flightNumber where s.source="+source+"AND s.destination="+destination);
+		return query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ScheduledFlights> retrieveAllShceduledFlights() {
+		Query query=entityManager.createQuery("select sf from ScheduledFlights sf");
 		return query.getResultList();
 	}
 	
@@ -58,5 +65,4 @@ public class ScheduledFlightsDaoImpl implements ScheduledFlightsDao{
 		else 
 		return false;
 	}
-
 }
