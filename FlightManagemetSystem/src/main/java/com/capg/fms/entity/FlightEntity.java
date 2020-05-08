@@ -1,10 +1,21 @@
-package com.capg.model;
+package com.capg.entity;
 
-public class Flight {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Flight")
+public class FlightEntity {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int flightNumber;
 	private String carrierName;
 	private int seatCapacity;
+	
 	public int getFlightNumber() {
 		return flightNumber;
 	}
@@ -23,6 +34,5 @@ public class Flight {
 	public void setSeatCapacity(int seatCapacity) {
 		this.seatCapacity = seatCapacity;
 	}
-	
-	
+
 }

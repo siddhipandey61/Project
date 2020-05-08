@@ -1,14 +1,26 @@
-package com.capg.model;
+package com.capg.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
-public class Schedule {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Schedule")
+public class ScheduleEntity {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int scheduleId;
 	private String source;
 	private String destination;
 	private Timestamp arrivalDateTime;
 	private Timestamp departureDateTime;
+	
 	public int getScheduleId() {
 		return scheduleId;
 	}
@@ -40,6 +52,5 @@ public class Schedule {
 		this.departureDateTime = departureDateTime;
 	}
 	
-	
-	
+
 }
